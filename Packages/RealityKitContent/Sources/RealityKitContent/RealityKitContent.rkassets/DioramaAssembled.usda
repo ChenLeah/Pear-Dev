@@ -5,9 +5,11 @@
     upAxis = "Y"
 )
 
+reorder rootPrims = ["Root", "f_15"]
+
 def Xform "Root"
 {
-    reorder nameChildren = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Yosemite", "Two_Harbors", "Parsons_Landing", "Ribbon_Beach", "Cathedral_Rocks", "El_Capitan", "Merced_River", "Catalina", "Diorama_Base", "SmoothConcrete", "Birds", "Clouds", "OceanAudioEmitter", "ForestAudioEmitter", "Ocean_Sounds_wav", "Forest_Sounds_wav", "FlatTerrain", "Materials", "NodeGraphs", "TrailPath_Export"]
+    reorder nameChildren = ["Yosemite", "Two_Harbors", "Parsons_Landing", "Ribbon_Beach", "Cathedral_Rocks", "f_15", "El_Capitan", "Merced_River", "Catalina", "Diorama_Base", "SmoothConcrete", "Birds", "Clouds", "OceanAudioEmitter", "ForestAudioEmitter", "Ocean_Sounds_wav", "Forest_Sounds_wav", "FlatTerrain", "Materials", "TrailPath_Export"]
     float3 xformOp:translate = (0, 0, 0)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -16,6 +18,7 @@ def Xform "Root"
         references = @TrailPath_Export/TrailPath_Export.usdc@
     )
     {
+        reorder nameChildren = ["Catalina_TrailA", "Catalina_TrailB", "Yosemite_TrailA", "Yosemite_TrailB", "TrailAnimated_mat"]
         float3 xformOp:scale = (1, 1, 1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -559,7 +562,6 @@ def Xform "Root"
         active = true
     )
     {
-        reorder nameChildren = ["", "Ribbon_Beach"]
         float3 xformOp:translate = (0.43, 1, 0.3691523)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -737,7 +739,7 @@ def Xform "Root"
 
     def "Materials" (
         active = true
-        prepend references = @Materials.usda@
+        references = @Materials.usda@
     )
     {
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
@@ -1030,6 +1032,20 @@ def Xform "Root"
                 float2 ui:nodegraph:node:size = (207.5, 189)
             }
         }
+    }
+
+    def "f_15_2" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (4.7123885, 0, 0)
+        }
+        prepend references = @f_15_2.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (0.1, 0.1, 0.1)
+        float3 xformOp:translate = (-2.30968e-7, 2.0968843, -1.13621354e-7)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 }
 

@@ -1,0 +1,99 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Sphere/DefaultMaterial>
+        double radius = 0.1
+
+        def Material "DefaultMaterial"
+        {
+            prepend token outputs:mtlx:surface.connect = </Root/Sphere/DefaultMaterial/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Sphere/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 109.5)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+            def Shader "DefaultSurfaceShader" (
+                active = false
+            )
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.9760973, 1, 0) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:emissiveColor = (0.9681688, 1, 0.7833003) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoat
+                float inputs:clearcoatRoughness
+                color3f inputs:diffuseColor = (1, 0.97883624, 0.053748816) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:emissiveColor = (0, 0, 0) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:ior = 1.8
+                float inputs:metallic = 0.3
+                float3 inputs:normal
+                float inputs:opacity = 0.8
+                float inputs:roughness = 0.1
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-255, 105)
+                float2 ui:nodegraph:node:size = (148.5, 199)
+                int ui:nodegraph:node:stackingOrder = 10
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:ior", "inputs:roughness", "inputs:diffuseColor"]
+            }
+        }
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            uniform token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                token birthLocation = "Volume"
+                double emissionDuration = 0.4
+                token emitterShape = "Sphere"
+                float radialAmount = 6.283
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float dampingFactor = 10
+                    float4 endColorA = (0.95106626, 0.88088834, 0.7701147, 1)
+                    token opacityOverLife = "Constant"
+                    float particleSize = 0.01
+                    float4 startColorA = (0.87461483, 0.87436604, 0, 1)
+                    bool useEndColor = 1
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                }
+            }
+        }
+    }
+}
+
