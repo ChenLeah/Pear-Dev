@@ -11,7 +11,7 @@ import Foundation
 
 struct History: Identifiable, Codable {
     let id: UUID
-    let position: String?
+    var position: String?
     var transcript: String?
     
     init(id: UUID = UUID(), position: String? = nil, transcript: String? = nil) {
@@ -19,4 +19,5 @@ struct History: Identifiable, Codable {
         self.position = position
         self.transcript = transcript
     }
+    
 }

@@ -22,6 +22,7 @@ public struct LearnMoreView: View {
     @Namespace private var animation
     @StateObject var speechRecognizer = SpeechRecognizer()
     @State private var isRecording = false
+    @State private var recordHistory: History?
     
     private var imagesFrame: Double {
         showingMoreInfo ? 326 : 50
@@ -68,12 +69,25 @@ public struct LearnMoreView: View {
                         
                         Button(action: {
                             print("Button was tapped")
+                            if isRecording {
+                                recordHistory = endRecording()
+                                print(recordHistory?.transcript ?? "no transcript")
+                            } else {
+                                startRecording()
+                            }
+                            isRecording.toggle()
+                            print(isRecording)
                         }) {
-                            Text("Start Recording")
-                                .padding()
+                            Text(isRecording ? "Stop Recording" : "Start Recording")              .padding()
                                 .foregroundColor(.white)
                                 .font(buttonFont)
                                 .cornerRadius(10)
+                        }
+                        if let history = recordHistory, history.transcript?.isEmpty == false {
+                            HistoryView(history: history)
+                        }
+                        else{
+                            
                         }
                     }
                 }
@@ -98,14 +112,12 @@ public struct LearnMoreView: View {
     private func startRecording() {
         speechRecognizer.resetTranscript()
         speechRecognizer.startTranscribing()
-        isRecording = true
     }
     
-    private func endRecording() {
+    private func endRecording() -> History {
         speechRecognizer.stopTranscribing()
-        isRecording = false
         let newHistory = History(position:name, transcript: speechRecognizer.transcript)
-        //scrum.history.insert(newHistory, at: 0)
+        return newHistory
     }
 }
 
@@ -126,6 +138,46 @@ struct ImagesView: View {
         }
     }
 }
+
+struct HistoryView: View {
+    let history: History
+
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading) {
+                Divider()
+                    .padding(.bottom)
+                if let position = history.position{
+                    Text("Position")
+                        .font(.headline)
+                    Text(position)
+                }
+                
+                if let transcript = history.transcript {
+                    Text("Transcript")
+                        .font(.headline)
+                        .padding(.top)
+                    Text(transcript)
+                }
+            }
+        }
+        .padding()
+    }
+}
+
+
+
+/*struct HistoryView_Previews: PreviewProvider {
+    static var history: History {
+        History(position: "Left Engine",
+                transcript: "Darla, would you like to start today? Sure, yesterday I reviewed Luis' PR and met with the design team to finalize the UI...")
+    }
+    
+    static var previews: some View {
+        HistoryView(history: history)
+    }
+}*/
 
 #Preview {
     RealityView { content, attachments in
