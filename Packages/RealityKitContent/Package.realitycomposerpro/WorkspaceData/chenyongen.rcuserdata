@@ -1,5 +1,5 @@
 {
-  "advancedEditorSelectedIdentifier" : "ShaderGraphEditorPluginID",
+  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
     "Bird_With_Audio.usda",
     "DioramaAssembled.usda",
@@ -715,6 +715,28 @@
     ],
     "E1D42338-DCD0-472B-AB9F-A7FC2854182F" : [
       {
+        "date" : 739636227.149526,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.70710677,
+          0,
+          0,
+          0.70710677,
+          0.7071069,
+          0,
+          0.38512552,
+          3.0161004,
+          1.5704865,
+          1
+        ]
+      },
+      {
         "date" : 739636219.780163,
         "title" : "Untitled",
         "transform" : [
@@ -909,28 +931,6 @@
           0.95965576,
           2.1337013,
           1.8774326,
-          1
-        ]
-      },
-      {
-        "date" : 739635014.071144,
-        "title" : "Untitled",
-        "transform" : [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0.7071069,
-          -0.70710677,
-          0,
-          0,
-          0.70710677,
-          0.7071069,
-          0,
-          0.7777364,
-          2.0798564,
-          1.9312775,
           1
         ]
       }
