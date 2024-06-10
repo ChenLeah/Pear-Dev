@@ -18,4 +18,4 @@ The code is developed with IOS development ecosystem.
 
 ## Development Tools Used
 XCode development IDE
-## Lisencing
+## Licensing
