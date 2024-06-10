@@ -67,7 +67,7 @@ def Xform "Root"
         rel material:binding = </TransparentMaterial> (
             bindMaterialAs = "weakerThanDescendants"
         )
-        double radius = 0.05
+        double radius = 0
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
         float3 xformOp:translate = (0.3, 1.25, -0.2)
@@ -75,6 +75,8 @@ def Xform "Root"
 
         def Material "DefaultMaterial"
         {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
             token outputs:surface.connect = </Root/LeftWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
             def Shader "DefaultSurfaceShader"

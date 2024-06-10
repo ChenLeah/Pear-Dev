@@ -1059,7 +1059,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (0, 0.29999995, 0.7)
@@ -1095,7 +1095,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (0.3, 0.25, -0.8)
@@ -1129,7 +1129,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (-0.3, 0.25, -0.8)
@@ -1164,7 +1164,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (0.09, 0.25, -0.75)
@@ -1198,7 +1198,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (0.3, 0.25, -0.4)
@@ -1232,7 +1232,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (0.3, 0.25, -0.2)
@@ -1267,7 +1267,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (-0.09, 0.25, -0.75)
@@ -1302,7 +1302,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (-0.3, 0.25, -0.4)
@@ -1337,7 +1337,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (-0.3, 0.25, -0.2)
@@ -1371,7 +1371,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (0.2, 0.29999995, -0.9)
@@ -1405,7 +1405,7 @@ def Xform "Root"
             rel material:binding = </Root/f_15/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
-            double radius = 0.05
+            double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (-0.2, 0.29999995, -0.9)
@@ -1540,6 +1540,16 @@ def Xform "Root"
                 int ui:nodegraph:node:stackingOrder = 6
             }
         }
+    }
+
+    def "Cloud_Chunk" (
+        active = true
+        prepend references = @Cloud_Chunk.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.0057411194, 0, 1.8382809)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 }
 
