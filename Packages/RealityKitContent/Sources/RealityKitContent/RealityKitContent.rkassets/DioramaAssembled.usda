@@ -9,7 +9,7 @@ reorder rootPrims = ["Root", "f_15"]
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Yosemite", "Two_Harbors", "Parsons_Landing", "Ribbon_Beach", "Cathedral_Rocks", "El_Capitan", "Merced_River", "Catalina", "Diorama_Base", "SmoothConcrete", "Birds", "Clouds", "OceanAudioEmitter", "ForestAudioEmitter", "Ocean_Sounds_wav", "Forest_Sounds_wav", "FlatTerrain", "Materials", "f_15", "Cockpit", "HorStable_L", "HorStable_R", "LeftEngine", "LeftFlips", "LeftWingSpars", "RightEngine", "RightFlips", "RightWingSpars", "VerStable_L", "VerStable_R", "f_15_2", "TransparentMaterial", "TrailPath_Export"]
+    reorder nameChildren = ["Yosemite", "Two_Harbors", "Parsons_Landing", "Ribbon_Beach", "Cathedral_Rocks", "El_Capitan", "Merced_River", "Catalina", "Diorama_Base", "SmoothConcrete", "Birds", "Clouds", "OceanAudioEmitter", "ForestAudioEmitter", "Ocean_Sounds_wav", "Forest_Sounds_wav", "FlatTerrain", "Materials", "Cloud_Chunk", "f_15_ground", "f_15_sky", "TrailPath_Export"]
     float3 xformOp:translate = (0, 0, 0)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -171,7 +171,7 @@ def Xform "Root"
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
-        rel material:binding = </Root/f_15/TransparentMaterial> (
+        rel material:binding = </Root/f_15_sky/TransparentMaterial> (
             bindMaterialAs = "weakerThanDescendants"
         )
         quatf xformOp:orient = (1, 0, 0, 0)
@@ -204,7 +204,7 @@ def Xform "Root"
         references = @FlatTerrain.usdz@
     )
     {
-        rel material:binding = </Root/Materials/DynamicTerrainMaterialEnhanced> (
+        rel material:binding = </Root/Materials/DynamicTerrainMaterialPlane> (
             bindMaterialAs = "weakerThanDescendants"
         )
         float3 xformOp:scale = (1, 1, 1)
@@ -278,26 +278,26 @@ def Xform "Root"
         references = @SmoothConcrete.usdz@
     )
     {
-        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 89)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
 
         over "Basecolor"
         {
-            float2 ui:nodegraph:node:size = (148.5, 189)
+            float2 ui:nodegraph:node:size = (148.5, 199)
         }
 
         over "Roughness"
         {
-            float2 ui:nodegraph:node:size = (148.5, 189)
+            float2 ui:nodegraph:node:size = (148.5, 199)
         }
 
         over "Metallic"
         {
-            float2 ui:nodegraph:node:size = (148.5, 189)
+            float2 ui:nodegraph:node:size = (148.5, 199)
         }
 
         over "add"
         {
-            float2 ui:nodegraph:node:size = (61.5, 36)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
         }
 
         over "multiply"
@@ -307,12 +307,12 @@ def Xform "Root"
 
         over "Normal"
         {
-            float2 ui:nodegraph:node:size = (148.5, 189)
+            float2 ui:nodegraph:node:size = (148.5, 199)
         }
 
         over "MaterialXPreviewSurface"
         {
-            float2 ui:nodegraph:node:size = (207.5, 189)
+            float2 ui:nodegraph:node:size = (207.5, 199)
         }
     }
 
@@ -412,10 +412,19 @@ def Xform "Root"
     {
         float3 xformOp:scale = (1, 1, 1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Looks"
+        {
+            over "DioramaYosemite_matSG"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+        }
     }
 
     def Xform "Two_Harbors" (
-        active = true
+        active = false
     )
     {
         reorder nameChildren = ["", "", "RealityKitContent_PointOfInterestComponent", "Catalina_TrailA"]
@@ -493,7 +502,7 @@ def Xform "Root"
     }
 
     def Xform "Parsons_Landing" (
-        active = true
+        active = false
     )
     {
         reorder nameChildren = ["", "", "RealityKitContent_PointOfInterestComponent", "Catalina_TrailB"]
@@ -564,7 +573,7 @@ def Xform "Root"
     }
 
     def Xform "Ribbon_Beach" (
-        active = true
+        active = false
     )
     {
         float3 xformOp:translate = (0.43, 1, 0.3691523)
@@ -583,7 +592,7 @@ def Xform "Root"
     }
 
     def Xform "Cathedral_Rocks" (
-        active = true
+        active = false
     )
     {
         reorder nameChildren = ["", "", "RealityKitContent_PointOfInterestComponent", "Yosemite_TrailB"]
@@ -658,7 +667,7 @@ def Xform "Root"
     }
 
     def Xform "El_Capitan" (
-        active = true
+        active = false
     )
     {
         reorder nameChildren = ["", "", "RealityKitContent_PointOfInterestComponent", "Yosemite_TrailA"]
@@ -729,7 +738,7 @@ def Xform "Root"
     }
 
     def Xform "Merced_River" (
-        active = true
+        active = false
     )
     {
         reorder nameChildren = ["", "", "RealityKitContent_PointOfInterestComponent", "Merced_River"]
@@ -751,6 +760,7 @@ def Xform "Root"
         references = @Materials.usda@
     )
     {
+        reorder nameChildren = ["DynamicTerrainMaterial", "DynamicTerrainMaterialEnhanced", "NodeGraphs", "LineFuzzWidth", "Multiply", "NormalMap", "DynamicTerrainMaterialPlane"]
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         over "DynamicTerrainMaterialEnhanced"
@@ -759,76 +769,77 @@ def Xform "Root"
                 customData = {
                     dictionary realitykit = {
                         float2 positionInSubgraph = (-2268.9553, -102.13123)
-                        float2 sizeInSubgraph = (123.5, 43)
+                        float2 sizeInSubgraph = (123.5, 53)
                         int stackingOrderInSubgraph = 8257
                     }
                 }
             )
-            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (210, 89)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (210, 99)
 
             over "MixNormals"
             {
-                float2 ui:nodegraph:node:size = (121, 135)
+                float2 ui:nodegraph:node:size = (121, 145)
             }
 
             over "Mix_3"
             {
-                float2 ui:nodegraph:node:size = (109, 135)
+                float2 ui:nodegraph:node:size = (109, 145)
             }
 
             over "CatalinaRoughness"
             {
-                float2 ui:nodegraph:node:size = (171.5, 189)
+                float2 ui:nodegraph:node:size = (171.5, 199)
             }
 
             over "YosemiteRoughness"
             {
-                float2 ui:nodegraph:node:size = (177.5, 189)
+                float2 ui:nodegraph:node:size = (177.5, 199)
+                int ui:nodegraph:node:stackingOrder = 8253
             }
 
             over "Mix"
             {
-                float2 ui:nodegraph:node:size = (109, 135)
+                float2 ui:nodegraph:node:size = (109, 145)
             }
 
             over "CatalinaAmbientOcclusion"
             {
-                float2 ui:nodegraph:node:size = (216.5, 189)
+                float2 ui:nodegraph:node:size = (216.5, 199)
             }
 
             over "YosemiteAmbientOcclusion"
             {
-                float2 ui:nodegraph:node:size = (222.5, 189)
+                float2 ui:nodegraph:node:size = (222.5, 199)
             }
 
             over "Mix_4"
             {
-                float2 ui:nodegraph:node:size = (109, 135)
+                float2 ui:nodegraph:node:size = (109, 145)
             }
 
             over "YosemiteHeights"
             {
-                float2 ui:nodegraph:node:size = (157, 189)
+                float2 ui:nodegraph:node:size = (157, 199)
             }
 
             over "CatalinaHeights"
             {
-                float2 ui:nodegraph:node:size = (151, 189)
+                float2 ui:nodegraph:node:size = (151, 199)
             }
 
             over "Mix_2"
             {
-                float2 ui:nodegraph:node:size = (109, 135)
+                float2 ui:nodegraph:node:size = (109, 145)
             }
 
             over "Normalize"
             {
-                float2 ui:nodegraph:node:size = (149, 30)
+                float2 ui:nodegraph:node:size = (149, 40)
             }
 
             over "Remap"
             {
-                float2 ui:nodegraph:node:size = (94, 171)
+                float2 ui:nodegraph:node:size = (94, 181)
             }
 
             over "Combine3"
@@ -838,17 +849,17 @@ def Xform "Root"
 
             over "MaterialXPreviewSurface"
             {
-                float2 ui:nodegraph:node:size = (207.5, 297)
+                float2 ui:nodegraph:node:size = (207.5, 307)
             }
 
             over "YosemiteNormals"
             {
-                float2 ui:nodegraph:node:size = (161, 189)
+                float2 ui:nodegraph:node:size = (161, 199)
             }
 
             over "CatalinaNormals"
             {
-                float2 ui:nodegraph:node:size = (154.5, 189)
+                float2 ui:nodegraph:node:size = (154.5, 199)
             }
 
             over "AngleCompensation"
@@ -857,23 +868,23 @@ def Xform "Root"
                     customData = {
                         dictionary realitykit = {
                             float2 positionInSubgraph = (-177.60938, 42.4375)
-                            float2 sizeInSubgraph = (113, 43)
+                            float2 sizeInSubgraph = (139, 53)
                             int stackingOrderInSubgraph = 7511
                         }
                     }
                 )
-                float2 ui:nodegraph:node:size = (177.5, 99)
+                float2 ui:nodegraph:node:size = (177.5, 109)
                 int ui:nodegraph:node:stackingOrder = 8252
-                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (165.99573, 71)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (165.99677, 81)
 
                 over "DotProduct"
                 {
-                    float2 ui:nodegraph:node:size = (153.5, 43)
+                    float2 ui:nodegraph:node:size = (153.5, 53)
                 }
 
                 over "Absval"
                 {
-                    float2 ui:nodegraph:node:size = (121.5, 43)
+                    float2 ui:nodegraph:node:size = (121.5, 53)
                 }
 
                 over "Subtract"
@@ -892,24 +903,24 @@ def Xform "Root"
 
                 over "Ifgreater"
                 {
-                    float2 ui:nodegraph:node:size = (109, 153)
+                    float2 ui:nodegraph:node:size = (109, 163)
                     int ui:nodegraph:node:stackingOrder = 7618
                 }
             }
 
             over "Lines"
             {
-                float2 ui:nodegraph:node:size = (135, 153)
+                float2 ui:nodegraph:node:size = (135, 163)
             }
 
             over "SecondaryLines"
             {
-                float2 ui:nodegraph:node:size = (149.5, 153)
+                float2 ui:nodegraph:node:size = (149.5, 163)
             }
 
             over "LineFuzzWidth"
             {
-                float2 ui:nodegraph:node:size = (177, 43)
+                float2 ui:nodegraph:node:size = (177, 53)
             }
 
             over "Multiply"
@@ -919,7 +930,7 @@ def Xform "Root"
 
             over "NormalMap"
             {
-                float2 ui:nodegraph:node:size = (124, 171)
+                float2 ui:nodegraph:node:size = (124, 181)
             }
 
             over "Dot"
@@ -929,12 +940,12 @@ def Xform "Root"
 
             over "YosemiteColors"
             {
-                float2 ui:nodegraph:node:size = (149.5, 189)
+                float2 ui:nodegraph:node:size = (149.5, 199)
             }
 
             over "CatalinaColors"
             {
-                float2 ui:nodegraph:node:size = (148.5, 189)
+                float2 ui:nodegraph:node:size = (148.5, 199)
             }
 
             over "Dot_1"
@@ -944,12 +955,12 @@ def Xform "Root"
 
             over "Progress"
             {
-                float2 ui:nodegraph:node:size = (140.5, 43)
+                float2 ui:nodegraph:node:size = (140.5, 53)
             }
 
             over "GeometryModifier"
             {
-                float2 ui:nodegraph:node:size = (196.5, 315)
+                float2 ui:nodegraph:node:size = (196.5, 325)
             }
 
             over "Multiply_1"
@@ -959,7 +970,7 @@ def Xform "Root"
 
             over "TestProgressDriver"
             {
-                float2 ui:nodegraph:node:size = (171.5, 71)
+                float2 ui:nodegraph:node:size = (171.5, 81)
             }
         }
 
@@ -969,16 +980,16 @@ def Xform "Root"
                 customData = {
                     dictionary realitykit = {
                         float2 positionInSubgraph = (-935.5011, 184.34294)
-                        float2 sizeInSubgraph = (123.5, 43)
+                        float2 sizeInSubgraph = (123.5, 53)
                         int stackingOrderInSubgraph = 314
                     }
                 }
             )
-            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 89)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
 
             over "Remap"
             {
-                float2 ui:nodegraph:node:size = (94, 171)
+                float2 ui:nodegraph:node:size = (94, 181)
             }
 
             over "Combine3"
@@ -988,448 +999,905 @@ def Xform "Root"
 
             over "Mix_1"
             {
-                float2 ui:nodegraph:node:size = (109, 135)
+                float2 ui:nodegraph:node:size = (109, 145)
             }
 
             over "GeometryModifier"
             {
-                float2 ui:nodegraph:node:size = (196.5, 315)
+                float2 ui:nodegraph:node:size = (196.5, 325)
             }
 
             over "Mix_2"
             {
-                float2 ui:nodegraph:node:size = (109, 135)
+                float2 ui:nodegraph:node:size = (109, 145)
             }
 
             over "YosemiteNormals"
             {
-                float2 ui:nodegraph:node:size = (161, 189)
+                float2 ui:nodegraph:node:size = (161, 199)
             }
 
             over "YosemiteHeights"
             {
-                float2 ui:nodegraph:node:size = (157, 189)
+                float2 ui:nodegraph:node:size = (157, 199)
             }
 
             over "CatalinaNormals"
             {
-                float2 ui:nodegraph:node:size = (154.5, 189)
+                float2 ui:nodegraph:node:size = (154.5, 199)
             }
 
             over "CatalinaHeights"
             {
-                float2 ui:nodegraph:node:size = (151, 189)
+                float2 ui:nodegraph:node:size = (151, 199)
             }
 
             over "YosemiteColors"
             {
-                float2 ui:nodegraph:node:size = (149.5, 189)
+                float2 ui:nodegraph:node:size = (149.5, 199)
             }
 
             over "CatalinaColors"
             {
-                float2 ui:nodegraph:node:size = (148.5, 189)
+                float2 ui:nodegraph:node:size = (148.5, 199)
             }
 
             over "Mix"
             {
-                float2 ui:nodegraph:node:size = (109, 135)
+                float2 ui:nodegraph:node:size = (109, 145)
             }
 
             over "MaterialXPreviewSurface"
             {
-                float2 ui:nodegraph:node:size = (207.5, 189)
+                float2 ui:nodegraph:node:size = (207.5, 199)
+            }
+        }
+
+        over "NodeGraphs"
+        {
+            over "AntiAliasedTopographyLines"
+            {
+                float inputs:FuzzWidth (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (59.930267, 473.81567)
+                            float2 sizeInSubgraph = (134, 53)
+                            int stackingOrderInSubgraph = 5767
+                        }
+                    }
+                )
+                color3f inputs:LineColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (67, 560.75)
+                            float2 sizeInSubgraph = (133, 53)
+                            int stackingOrderInSubgraph = 4313
+                        }
+                    }
+                )
+                float inputs:LineWidth_value (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (50.71946, 377.60477)
+                            float2 sizeInSubgraph = (171, 53)
+                            int stackingOrderInSubgraph = 5773
+                        }
+                    }
+                )
+                float inputs:Spacing (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (68.50054, 299.94638)
+                            float2 sizeInSubgraph = (118.5, 53)
+                            int stackingOrderInSubgraph = 4363
+                        }
+                    }
+                )
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (205.05956, 81)
+
+                over "Subtract"
+                {
+                    float2 ui:nodegraph:node:size = (61.5, 36)
+                }
+
+                over "Dot"
+                {
+                    float2 ui:nodegraph:node:size = (44, 18)
+                }
+
+                over "Dot_1"
+                {
+                    float2 ui:nodegraph:node:size = (44, 18)
+                }
+
+                over "Add_1"
+                {
+                    float2 ui:nodegraph:node:size = (61.5, 36.5)
+                }
+
+                over "LineWidth"
+                {
+                    float2 ui:nodegraph:node:size = (147.5, 53)
+                }
+
+                over "Multiply"
+                {
+                    float2 ui:nodegraph:node:size = (60, 36)
+                }
+
+                over "Mix"
+                {
+                    float2 ui:nodegraph:node:size = (109, 145)
+                }
+
+                over "SmoothStep"
+                {
+                    float2 ui:nodegraph:node:size = (127.5, 145)
+                }
+
+                over "SmoothStep_1"
+                {
+                    float2 ui:nodegraph:node:size = (139.5, 145)
+                }
+
+                over "position"
+                {
+                    float2 ui:nodegraph:node:size = (133.5, 53)
+                }
+
+                over "Modulo"
+                {
+                    float2 ui:nodegraph:node:size = (63, 38.5)
+                }
+
+                over "Separate3"
+                {
+                    float2 ui:nodegraph:node:size = (115.5, 145)
+                }
+            }
+
+            over "HeightMix"
+            {
+                float inputs:a (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (44.38672, 41.664062)
+                            float2 sizeInSubgraph = (98, 53)
+                            int stackingOrderInSubgraph = 7374
+                        }
+                    }
+                )
+                float inputs:b (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (40.804688, 300.21875)
+                            float2 sizeInSubgraph = (98, 53)
+                            int stackingOrderInSubgraph = 7381
+                        }
+                    }
+                )
+                float inputs:mix (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (43.285156, -27.640625)
+                            float2 sizeInSubgraph = (98, 53)
+                            int stackingOrderInSubgraph = 7382
+                        }
+                    }
+                )
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (114.06208, 81)
+
+                over "Ifgreater"
+                {
+                    float2 ui:nodegraph:node:size = (109, 163)
+                }
+
+                over "Dot"
+                {
+                    float2 ui:nodegraph:node:size = (44, 18)
+                }
+
+                over "Multiply_1"
+                {
+                    float2 ui:nodegraph:node:size = (60, 36)
+                }
+
+                over "Multiply_2"
+                {
+                    float2 ui:nodegraph:node:size = (60, 36)
+                }
+
+                over "Remap"
+                {
+                    float2 ui:nodegraph:node:size = (94, 181)
+                }
+
+                over "Cos"
+                {
+                    float2 ui:nodegraph:node:size = (116, 40)
+                }
+
+                over "_2_pi"
+                {
+                    float2 ui:nodegraph:node:size = (60, 36)
+                }
+            }
+
+            over "MiddleDuckMixFunction"
+            {
+                float inputs:mix (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (49, 85.5)
+                            float2 sizeInSubgraph = (98, 53)
+                            int stackingOrderInSubgraph = 7448
+                        }
+                    }
+                )
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (165, 81)
+
+                over "_2_pi"
+                {
+                    float2 ui:nodegraph:node:size = (60, 36)
+                }
+
+                over "Cos"
+                {
+                    float2 ui:nodegraph:node:size = (116, 40)
+                }
+
+                over "Remap"
+                {
+                    float2 ui:nodegraph:node:size = (94, 181)
+                }
+            }
+        }
+
+        def Material "DynamicTerrainMaterialPlane" (
+            active = true
+            references = </Root/Materials/DynamicTerrainMaterialEnhanced>
+        )
+        {
+            reorder nameChildren = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "MaterialXPreviewSurface", "GeometryModifier", "YosemiteColors", "Combine3", "Remap", "CatalinaColors", "YosemiteNormals", "CatalinaNormals", "YosemiteHeights", "CatalinaHeights", "Mix", "MixNormals", "Normalize", "Mix_2", "Mix_3", "CatalinaRoughness", "YosemiteRoughness", "CatalinaAmbientOcclusion", "YosemiteAmbientOcclusion", "Mix_4", "AngleCompensation", "Lines", "SecondaryLines", "LineFuzzWidth", "Multiply", "Dot", "Dot_1", "TestProgressDriver", "Multiply_1", "NormalMap", "Progress"]
+            float inputs:Progress = 0 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-2268.9553, -102.13123)
+                        float2 sizeInSubgraph = (123.5, 53)
+                        int stackingOrderInSubgraph = 8257
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Root/Materials/DynamicTerrainMaterialPlane/MaterialXPreviewSurface.outputs:out>
+            token outputs:realitykit:vertex.connect = </Root/Materials/DynamicTerrainMaterialPlane/GeometryModifier.outputs:out>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (358.25, 94.5)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (189, 99)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 8150
+
+            def Shader "MaterialXPreviewSurface" (
+                active = true
+            )
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = </Root/Materials/DynamicTerrainMaterialPlane/Multiply_1.outputs:out>
+                color3f inputs:emissiveColor
+                float inputs:ior
+                float inputs:metallic
+                float3 inputs:normal.connect = </Root/Materials/DynamicTerrainMaterialPlane/Remap.outputs:out>
+                float inputs:occlusion.connect = </Root/Materials/DynamicTerrainMaterialPlane/Mix_4.outputs:out>
+                float inputs:opacity
+                float inputs:opacityThreshold
+                float inputs:roughness.connect = </Root/Materials/DynamicTerrainMaterialPlane/Mix_3.outputs:out>
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (55.553413, -472.86444)
+                float2 ui:nodegraph:node:size = (207.5, 307)
+                int ui:nodegraph:node:stackingOrder = 8158
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                color4f inputs:color
+                float3 inputs:modelPositionOffset.connect = </Root/Materials/DynamicTerrainMaterialPlane/Combine3.outputs:out>
+                float3 inputs:normal
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (96.36719, 378.0547)
+                float2 ui:nodegraph:node:size = (196.5, 325)
+                int ui:nodegraph:node:stackingOrder = 8240
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1
+                float inputs:in2.connect = </Root/Materials/DynamicTerrainMaterialPlane/Mix_2.outputs:out>
+                float inputs:in3
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-1023.3898, 266.5673)
+                float2 ui:nodegraph:node:size = (145, 54)
+                int ui:nodegraph:node:stackingOrder = 8156
+            }
+
+            def Shader "Remap"
+            {
+                uniform token info:id = "ND_remap_vector3FA"
+                float3 inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/Normalize.outputs:out>
+                float inputs:inhigh
+                float inputs:inlow
+                float inputs:outlow = -1
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-246.24062, -190.56055)
+                float2 ui:nodegraph:node:size = (94, 181)
+                int ui:nodegraph:node:stackingOrder = 8154
+            }
+
+            def Shader "YosemiteColors"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default = (0.58885735, 0.58885735, 0.58885735) (
+                    colorSpace = "srgb_displayp3"
+                )
+                asset inputs:file = @TrailPath_Export/Concrete_1.jpg@
+                string inputs:filtertype
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-1528.858, -883.2184)
+                float2 ui:nodegraph:node:size = (149.5, 199)
+                int ui:nodegraph:node:stackingOrder = 8276
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:file", "inputs:vaddressmode"]
+            }
+
+            def Shader "CatalinaColors"
+            {
+                uniform token info:id = "ND_image_color3"
+                asset inputs:file = @CatalinaData/DioramaCatalina_bc.png@
+                string inputs:filtertype
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-1391.5065, -943.07745)
+                float2 ui:nodegraph:node:size = (148.5, 199)
+                int ui:nodegraph:node:stackingOrder = 8252
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:vaddressmode", "inputs:default"]
+            }
+
+            def Shader "YosemiteNormals"
+            {
+                uniform token info:id = "ND_image_vector3"
+                float3 inputs:default
+                asset inputs:file = @TrailPath_Export/Concrete_1.jpg@
+                string inputs:filtertype
+                float2 inputs:texcoord
+                string inputs:uaddressmode
+                string inputs:vaddressmode
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-1487.7197, -240.35104)
+                float2 ui:nodegraph:node:size = (161, 199)
+                int ui:nodegraph:node:stackingOrder = 8274
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:filtertype", "inputs:file"]
+            }
+
+            def Shader "CatalinaNormals"
+            {
+                uniform token info:id = "ND_image_vector3"
+                float3 inputs:default
+                asset inputs:file = @CatalinaData/DioramaCatalina_n.png@
+                string inputs:filtertype
+                float2 inputs:texcoord
+                string inputs:uaddressmode
+                string inputs:vaddressmode
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-1455.5757, -285.65823)
+                float2 ui:nodegraph:node:size = (154.5, 199)
+                int ui:nodegraph:node:stackingOrder = 8172
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:file"]
+            }
+
+            def Shader "YosemiteHeights"
+            {
+                uniform token info:id = "ND_image_float"
+                float inputs:default
+                asset inputs:file = None
+                string inputs:filtertype
+                float2 inputs:texcoord
+                string inputs:uaddressmode
+                string inputs:vaddressmode
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1505.3527, 477.21112)
+                float2 ui:nodegraph:node:size = (157, 199)
+                int ui:nodegraph:node:stackingOrder = 8265
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:file", "inputs:texcoord"]
+            }
+
+            def Shader "CatalinaHeights"
+            {
+                uniform token info:id = "ND_image_float"
+                float inputs:default
+                asset inputs:file = @CatalinaData/DioramaCatalina_refit_h.exr@
+                string inputs:filtertype
+                float2 inputs:texcoord
+                string inputs:uaddressmode
+                string inputs:vaddressmode
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1478.3761, 429.90903)
+                float2 ui:nodegraph:node:size = (151, 199)
+                int ui:nodegraph:node:stackingOrder = 8263
+            }
+
+            def Shader "Mix"
+            {
+                uniform token info:id = "ND_mix_color3"
+                color3f inputs:bg.connect = </Root/Materials/DynamicTerrainMaterialPlane/YosemiteColors.outputs:out>
+                color3f inputs:fg.connect = </Root/Materials/DynamicTerrainMaterialPlane/CatalinaColors.outputs:out>
+                float inputs:mix.connect = </Root/Materials/DynamicTerrainMaterialPlane/Dot_1.outputs:out>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-1214.2379, -796.3795)
+                float2 ui:nodegraph:node:size = (109, 145)
+                int ui:nodegraph:node:stackingOrder = 8058
+            }
+
+            def Shader "Mix_2"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </Root/Materials/DynamicTerrainMaterialPlane/YosemiteHeights.outputs:out>
+                float inputs:fg.connect = </Root/Materials/DynamicTerrainMaterialPlane/CatalinaHeights.outputs:out>
+                float inputs:mix.connect = </Root/Materials/DynamicTerrainMaterialPlane/Progress.outputs:out>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1272.4836, 414.77963)
+                float2 ui:nodegraph:node:size = (109, 145)
+                int ui:nodegraph:node:stackingOrder = 8148
+            }
+
+            def Shader "Mix_3"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </Root/Materials/DynamicTerrainMaterialPlane/YosemiteRoughness.outputs:out>
+                float inputs:fg.connect = </Root/Materials/DynamicTerrainMaterialPlane/CatalinaRoughness.outputs:out>
+                float inputs:mix.connect = </Root/Materials/DynamicTerrainMaterialPlane/Progress.outputs:out>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1223.0446, -477.043)
+                float2 ui:nodegraph:node:size = (109, 145)
+                int ui:nodegraph:node:stackingOrder = 8054
+            }
+
+            def Shader "CatalinaRoughness"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @CatalinaData/DioramaCatalina_r.png@
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1444.0022, -591.7787)
+                float2 ui:nodegraph:node:size = (171.5, 199)
+                int ui:nodegraph:node:stackingOrder = 8054
+            }
+
+            def Shader "YosemiteRoughness"
+            {
+                uniform token info:id = "ND_image_float"
+                float inputs:default = 1
+                asset inputs:file = @TrailPath_Export/Concrete_1.jpg@
+                string inputs:filtertype
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1483.7522, -545.18494)
+                float2 ui:nodegraph:node:size = (177.5, 199)
+                int ui:nodegraph:node:stackingOrder = 8273
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:texcoord", "inputs:texcoord"]
+            }
+
+            def Shader "Mix_4"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </Root/Materials/DynamicTerrainMaterialPlane/YosemiteAmbientOcclusion.outputs:out>
+                float inputs:fg.connect = </Root/Materials/DynamicTerrainMaterialPlane/CatalinaAmbientOcclusion.outputs:out>
+                float inputs:mix.connect = </Root/Materials/DynamicTerrainMaterialPlane/Progress.outputs:out>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1203.26, 139.61383)
+                float2 ui:nodegraph:node:size = (109, 145)
+                int ui:nodegraph:node:stackingOrder = 8105
+            }
+
+            def Shader "CatalinaAmbientOcclusion"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @CatalinaData/DioramaCatalina_ao.png@
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1424.2177, 24.878143)
+                float2 ui:nodegraph:node:size = (216.5, 199)
+                int ui:nodegraph:node:stackingOrder = 8271
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:texcoord"]
+            }
+
+            def Shader "YosemiteAmbientOcclusion"
+            {
+                uniform token info:id = "ND_image_float"
+                float inputs:default = 1
+                asset inputs:file = None
+                string inputs:filtertype
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1463.9677, 71.47189)
+                float2 ui:nodegraph:node:size = (222.5, 199)
+                int ui:nodegraph:node:stackingOrder = 8275
+            }
+
+            def Shader "MixNormals"
+            {
+                uniform token info:id = "ND_mix_vector3"
+                float3 inputs:bg.connect = </Root/Materials/DynamicTerrainMaterialPlane/YosemiteNormals.outputs:out>
+                float3 inputs:fg.connect = </Root/Materials/DynamicTerrainMaterialPlane/CatalinaNormals.outputs:out>
+                float inputs:mix.connect = </Root/Materials/DynamicTerrainMaterialPlane/Progress.outputs:out>
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-1237.477, -258.17902)
+                float2 ui:nodegraph:node:size = (121, 145)
+                int ui:nodegraph:node:stackingOrder = 8054
+            }
+
+            def Shader "Normalize"
+            {
+                uniform token info:id = "ND_normalize_vector3"
+                float3 inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/MixNormals.outputs:out>
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-993.0393, -216.8567)
+                float2 ui:nodegraph:node:size = (149, 40)
+                int ui:nodegraph:node:stackingOrder = 8152
+            }
+
+            def NodeGraph "AngleCompensation"
+            {
+                reorder nameChildren = ["", "", "", "", "", "DotProduct", "Multiply_1", "Subtract", "Ifgreater", "HeightMix_1"]
+                float3 inputs:Normal = (0, 0, 0) (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-177.60938, 42.4375)
+                            float2 sizeInSubgraph = (113, 43)
+                            int stackingOrderInSubgraph = 7511
+                        }
+                    }
+                )
+                float3 inputs:Normal.connect = </Root/Materials/DynamicTerrainMaterialPlane/NormalMap.outputs:out>
+                float outputs:Multiply_1_out.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation/Ifgreater.outputs:out>
+                float2 ui:nodegraph:node:pos = (-770.5289, -935.8738)
+                float2 ui:nodegraph:node:size = (177.5, 109)
+                int ui:nodegraph:node:stackingOrder = 8250
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:Multiply_1_out", "outputs:Multiply_1_out"]
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (712.515, 102.66016)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (165.99559, 71)
+                int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 5748
+
+                def Shader "DotProduct"
+                {
+                    uniform token info:id = "ND_dotproduct_vector3"
+                    float3 inputs:in1.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation.inputs:Normal>
+                    float3 inputs:in2 = (0, 1, 0)
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (15.640625, 42.4375)
+                    float2 ui:nodegraph:node:size = (153.5, 43)
+                    int ui:nodegraph:node:stackingOrder = 7471
+                }
+
+                def Shader "Ifgreater"
+                {
+                    uniform token info:id = "ND_ifgreater_float"
+                    float inputs:in1
+                    float inputs:in2 = 0.005
+                    float inputs:in2.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation/Subtract.outputs:out>
+                    float inputs:value1.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation/Absval.outputs:out>
+                    float inputs:value2 = 0.995
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (531.1406, 60.61328)
+                    float2 ui:nodegraph:node:size = (109, 153)
+                    int ui:nodegraph:node:stackingOrder = 7616
+                }
+
+                def Shader "Multiply_1"
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation/DotProduct.outputs:out>
+                    float inputs:in2 = 0.0032
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (293.8164, 192.03516)
+                    float2 ui:nodegraph:node:size = (60, 36)
+                    int ui:nodegraph:node:stackingOrder = 7614
+                }
+
+                def Shader "Absval"
+                {
+                    uniform token info:id = "ND_absval_float"
+                    float inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation/DotProduct.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (277.1797, 31.824219)
+                    float2 ui:nodegraph:node:size = (121.5, 43)
+                    int ui:nodegraph:node:stackingOrder = 7580
+                }
+
+                def Shader "Subtract"
+                {
+                    uniform token info:id = "ND_subtract_float"
+                    float inputs:in1 = 0.004
+                    float inputs:in2.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation/Multiply_1.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (376.5, 109.18359)
+                    float2 ui:nodegraph:node:size = (61.5, 36)
+                    int ui:nodegraph:node:stackingOrder = 7613
+                }
+            }
+
+            def "Lines" (
+                active = true
+                instanceable = true
+                references = </Root/NodeGraphs/AntiAliasedTopographyLines>
+            )
+            {
+                float inputs:FuzzWidth.connect = </Root/Materials/DynamicTerrainMaterialPlane/LineFuzzWidth.outputs:out>
+                float inputs:LineWidth_value = 0.001
+                float inputs:LineWidth_value.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation.outputs:Multiply_1_out>
+                float inputs:Spacing = 0.05
+                float2 ui:nodegraph:node:pos = (-531.7251, -995.9503)
+                float2 ui:nodegraph:node:size = (135, 163)
+                int ui:nodegraph:node:stackingOrder = 8220
+            }
+
+            def "SecondaryLines" (
+                active = true
+                instanceable = true
+                references = </Root/NodeGraphs/AntiAliasedTopographyLines>
+            )
+            {
+                float inputs:FuzzWidth (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (59.930267, 473.81567)
+                            float2 sizeInSubgraph = (134, 43)
+                            int stackingOrderInSubgraph = 5767
+                        }
+                    }
+                )
+                float inputs:FuzzWidth.connect = </Root/Materials/DynamicTerrainMaterialPlane/LineFuzzWidth.outputs:out>
+                color3f inputs:LineColor = (0.75406885, 0.7540868, 0.75407714) (
+                    colorSpace = "Input - Texture - sRGB - sRGB"
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (67, 560.75)
+                            float2 sizeInSubgraph = (127.5, 43)
+                            int stackingOrderInSubgraph = 4313
+                        }
+                    }
+                )
+                color3f inputs:LineColor.connect = None
+                float inputs:LineWidth_value = 0.001 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (50.71946, 377.60477)
+                            float2 sizeInSubgraph = (171, 43)
+                            int stackingOrderInSubgraph = 5773
+                        }
+                    }
+                )
+                float inputs:LineWidth_value.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation.outputs:Multiply_1_out>
+                float inputs:Spacing = 0.01 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (68.50054, 299.94638)
+                            float2 sizeInSubgraph = (118.5, 43)
+                            int stackingOrderInSubgraph = 4363
+                        }
+                    }
+                )
+                float2 ui:nodegraph:node:pos = (-526.79315, -754.96735)
+                float2 ui:nodegraph:node:size = (149.5, 163)
+                int ui:nodegraph:node:stackingOrder = 8220
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (224, 71)
+            }
+
+            def Shader "LineFuzzWidth"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 0.001
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-768.0301, -823.47705)
+                float2 ui:nodegraph:node:size = (177, 53)
+                int ui:nodegraph:node:stackingOrder = 8220
+            }
+
+            def Shader "Multiply_1"
+            {
+                uniform token info:id = "ND_multiply_color3"
+                color3f inputs:in1 = (0.999996, 1, 1) (
+                    colorSpace = "Input - Texture - sRGB - sRGB"
+                )
+                color3f inputs:in1.connect = </Root/Materials/DynamicTerrainMaterialPlane/Multiply.outputs:out>
+                color3f inputs:in2.connect = </Root/Materials/DynamicTerrainMaterialPlane/Dot.outputs:out>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-136.82896, -583.1944)
+                float2 ui:nodegraph:node:size = (60, 36)
+                int ui:nodegraph:node:stackingOrder = 8241
+            }
+
+            def Shader "NormalMap"
+            {
+                uniform token info:id = "ND_normalmap_vector2"
+                float3 inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/MixNormals.outputs:out>
+                float3 inputs:normal
+                float2 inputs:scale
+                string inputs:space
+                float3 inputs:tangent
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-971.10803, -902.82275)
+                float2 ui:nodegraph:node:size = (124, 181)
+                int ui:nodegraph:node:stackingOrder = 8220
+            }
+
+            def Shader "Progress"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 0.5
+                float inputs:value.connect = </Root/Materials/DynamicTerrainMaterialPlane.inputs:Progress>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1944.5425, 55.71174)
+                float2 ui:nodegraph:node:size = (140.5, 53)
+                int ui:nodegraph:node:stackingOrder = 8239
+            }
+
+            def Shader "Multiply"
+            {
+                uniform token info:id = "ND_multiply_color3"
+                color3f inputs:in1.connect = </Root/Materials/DynamicTerrainMaterialPlane/Lines.outputs:Multiply_out>
+                color3f inputs:in2.connect = </Root/Materials/DynamicTerrainMaterialPlane/SecondaryLines.outputs:Multiply_out>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-366.66583, -855.7777)
+                float2 ui:nodegraph:node:size = (60, 36)
+                int ui:nodegraph:node:stackingOrder = 8220
+            }
+
+            def Shader "Dot"
+            {
+                uniform token info:id = "ND_dot_color3"
+                color3f inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/Mix.outputs:out>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-966.12213, -568.37756)
+                float2 ui:nodegraph:node:size = (44, 18)
+                int ui:nodegraph:node:stackingOrder = 8225
+            }
+
+            def Shader "Dot_1"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/Progress.outputs:out>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1602.4569, -754.3279)
+                float2 ui:nodegraph:node:size = (44, 18)
+                int ui:nodegraph:node:stackingOrder = 8238
+            }
+
+            def NodeGraph "TestProgressDriver"
+            {
+                float outputs:Progress.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Ifgreater_1.outputs:out>
+                float2 ui:nodegraph:node:pos = (-2249.6958, 70.22948)
+                float2 ui:nodegraph:node:size = (171.5, 81)
+                int ui:nodegraph:node:stackingOrder = 8249
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1309.75, 225)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (142, 71)
+
+                def Shader "Multiply_2"
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Multiply_5.outputs:out>
+                    float inputs:in2 = 3.14159
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (334.5, 85.5)
+                    float2 ui:nodegraph:node:size = (60, 36)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
+
+                def Shader "Ifgreater_1"
+                {
+                    uniform token info:id = "ND_ifgreater_float"
+                    float inputs:in1.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Ifgreater_2.outputs:out>
+                    float inputs:in2.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Ifgreater.outputs:out>
+                    float inputs:value1 = 1.5
+                    float inputs:value1.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Modulo.outputs:out>
+                    float inputs:value2 = 3
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (1101.25, 225)
+                    float2 ui:nodegraph:node:size = (113.5, 153)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
+
+                def Shader "Cos"
+                {
+                    uniform token info:id = "ND_cos_float"
+                    float inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (482.5, 85.5)
+                    float2 ui:nodegraph:node:size = (116, 30)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
+
+                def Shader "Multiply_5"
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Time.outputs:out>
+                    float inputs:in2 = 0.5
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (214.5, 136.5)
+                    float2 ui:nodegraph:node:size = (60, 36)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
+
+                def Shader "Remap_1"
+                {
+                    uniform token info:id = "ND_remap_float"
+                    float inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Cos.outputs:out>
+                    float inputs:inlow = -1
+                    float inputs:outhigh
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (686, 85.5)
+                    float2 ui:nodegraph:node:size = (105.5, 171)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
+
+                def Shader "Ifgreater_2"
+                {
+                    uniform token info:id = "ND_ifgreater_float"
+                    float inputs:in1 = 1
+                    float inputs:in2.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Remap_1.outputs:out>
+                    float inputs:value1.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Modulo.outputs:out>
+                    float inputs:value2 = 4
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (908, 88.5)
+                    float2 ui:nodegraph:node:size = (117, 153)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
+
+                def Shader "Modulo"
+                {
+                    uniform token info:id = "ND_modulo_float"
+                    float inputs:in1.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Multiply_5.outputs:out>
+                    float inputs:in2 = 6
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (482.5, 196.5)
+                    float2 ui:nodegraph:node:size = (63, 36)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
+
+                def Shader "Ifgreater"
+                {
+                    uniform token info:id = "ND_ifgreater_float"
+                    float inputs:in1
+                    float inputs:in2.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Remap_1.outputs:out>
+                    float inputs:value1.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Modulo.outputs:out>
+                    float inputs:value2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (908, 301.5)
+                    float2 ui:nodegraph:node:size = (109, 153)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
+
+                def Shader "Time"
+                {
+                    uniform token info:id = "ND_time_float"
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (62.25, 136.5)
+                    float2 ui:nodegraph:node:size = (124.5, 43)
+                    int ui:nodegraph:node:stackingOrder = 8319
+                }
             }
         }
     }
 
-    def Xform "f_15" (
+    def "Cloud_Chunk" (
+        active = false
+        references = @Cloud_Chunk.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.0057411194, 0, 1.8382809)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "f_15_sky" (
         active = true
     )
     {
-        reorder nameChildren = ["Cockpit", "HorStable_L", "HorStable_R", "LeftEngine", "LeftFlips", "LeftWingSpars", "RightEngine", "RightFlips", "RightWingSpars", "VerStable_L", "VerStable_R", "f_15_2", "TransparentMaterial"]
+        reorder nameChildren = ["f_15_2", "TransparentMaterial", "f_15_3", "Group"]
         float3 xformOp:translate = (0, 2, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-        def Sphere "Cockpit" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0, 0.29999995, 0.7)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:mtlx:surface
-                token outputs:realitykit:vertex
-                token outputs:surface.connect = </Root/f_15/Cockpit/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Cockpit"
-            }
-        }
-
-        def Sphere "HorStable_L" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.3, 0.25, -0.8)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/HorStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Horizontal Stabilizer (Left)"
-            }
-        }
-
-        def Sphere "HorStable_R" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.3, 0.25, -0.8)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/HorStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Horizontal Stabilizer (Right)"
-            }
-        }
-
-        def Sphere "LeftEngine" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.09, 0.25, -0.75)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/LeftEngine/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Engine (Left)"
-            }
-        }
-
-        def Sphere "LeftFlips" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.3, 0.25, -0.4)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/LeftFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Flips (Left)"
-            }
-        }
-
-        def Sphere "LeftWingSpars" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.3, 0.25, -0.2)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/LeftWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Wing Spars (Left)"
-            }
-        }
-
-        def Sphere "RightEngine" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.09, 0.25, -0.75)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/RightEngine/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Engine (Right)"
-            }
-        }
-
-        def Sphere "RightFlips" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.3, 0.25, -0.4)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/RightFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Flips (Right)"
-            }
-        }
-
-        def Sphere "RightWingSpars" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.3, 0.25, -0.2)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/RightWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Wing Spars (Right)"
-            }
-        }
-
-        def Sphere "VerStable_L" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.2, 0.29999995, -0.9)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/VerStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Vertical Stabilizer (Left)"
-            }
-        }
-
-        def Sphere "VerStable_R" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.2, 0.29999995, -0.9)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15/VerStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Vertical Stabilizer (Right)"
-            }
-        }
 
         def "f_15_2" (
             active = true
@@ -1448,55 +1916,55 @@ def Xform "Root"
             {
                 over "Main_V1_Mat"
                 {
-                    token outputs:surface.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat/Principled_BSDF.outputs:surface>
+                    token outputs:surface.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat/Principled_BSDF.outputs:surface>
 
                     over "Principled_BSDF"
                     {
-                        color3f inputs:diffuseColor.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat/Image_Texture_001.outputs:rgb>
-                        color3f inputs:emissiveColor.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat/Image_Texture.outputs:rgb>
-                        float inputs:opacity.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat/Image_Texture_002.outputs:a>
+                        color3f inputs:diffuseColor.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat/Image_Texture_001.outputs:rgb>
+                        color3f inputs:emissiveColor.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat/Image_Texture.outputs:rgb>
+                        float inputs:opacity.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat/Image_Texture_002.outputs:a>
                     }
 
                     over "Image_Texture_001"
                     {
-                        float2 inputs:st.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
+                        float2 inputs:st.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
                     }
 
                     over "Image_Texture_002"
                     {
-                        float2 inputs:st.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
+                        float2 inputs:st.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
                     }
 
                     over "Image_Texture"
                     {
-                        float2 inputs:st.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
+                        float2 inputs:st.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
                     }
                 }
 
                 over "Main_V1_Mat_1"
                 {
-                    token outputs:surface.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat_1/Principled_BSDF.outputs:surface>
+                    token outputs:surface.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat_1/Principled_BSDF.outputs:surface>
 
                     over "Principled_BSDF"
                     {
-                        color3f inputs:diffuseColor.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat_1/Image_Texture_001.outputs:rgb>
-                        color3f inputs:emissiveColor.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat_1/Image_Texture.outputs:rgb>
-                        float inputs:opacity.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat_1/Image_Texture_002.outputs:a>
+                        color3f inputs:diffuseColor.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat_1/Image_Texture_001.outputs:rgb>
+                        color3f inputs:emissiveColor.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat_1/Image_Texture.outputs:rgb>
+                        float inputs:opacity.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat_1/Image_Texture_002.outputs:a>
                     }
 
                     over "Image_Texture_001"
                     {
-                        float2 inputs:st.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
+                        float2 inputs:st.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
                     }
 
                     over "Image_Texture_002"
                     {
-                        float2 inputs:st.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
+                        float2 inputs:st.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
                     }
 
                     over "Image_Texture"
                     {
-                        float2 inputs:st.connect = </Root/f_15/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
+                        float2 inputs:st.connect = </Root/f_15_sky/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
                     }
                 }
             }
@@ -1504,9 +1972,9 @@ def Xform "Root"
 
         def Material "TransparentMaterial"
         {
-            token outputs:mtlx:surface.connect = </Root/f_15/TransparentMaterial/PreviewSurface.outputs:out>
+            token outputs:mtlx:surface.connect = </Root/f_15_sky/TransparentMaterial/PreviewSurface.outputs:out>
             token outputs:realitykit:vertex
-            token outputs:surface.connect = </Root/f_15/TransparentMaterial/UsdPreviewSurface.outputs:surface>
+            token outputs:surface.connect = </Root/f_15_sky/TransparentMaterial/UsdPreviewSurface.outputs:surface>
             string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:mtlx:surface"]
             float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 109.5)
             float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
@@ -1540,16 +2008,942 @@ def Xform "Root"
                 int ui:nodegraph:node:stackingOrder = 6
             }
         }
+
+        def Sphere "VerStable_R" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.2, 0.29999995, -0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/VerStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Maintains directional stability of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Vertical Stabilizer (Right)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "VerStable_L" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.2, 0.29999995, -0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/VerStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Maintains directional stability of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Vertical Stabilizer (Left)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "RightWingSpars" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3, 0.25, -0.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/RightWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Structural component carrying the majority of the wing's load"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Wing Spars (Right)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "RightFlips" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3, 0.25, -0.4)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/RightFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Increases lift during takeoff and landing"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Flips (Right)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "RightEngine" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.09, 0.25, -0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/RightEngine/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Provides thrust for propulsion"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Engine (Right)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "LeftWingSpars" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.3, 0.25, -0.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/LeftWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Structural component carrying the majority of the wing's load"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Wing Spars (Left)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "LeftFlips" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.3, 0.25, -0.4)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/LeftFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Increases lift during takeoff and landing"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Flips (Left)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "LeftEngine" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.09, 0.25, -0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/LeftEngine/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Provides thrust for propulsion"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Engine (Left)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "HorStable_R" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3, 0.25, -0.8)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/HorStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Stabilizes the pitch of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Horizontal Stabilizer (Right)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "HorStable_L" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.3, 0.25, -0.8)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_sky/HorStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Stabilizes the pitch of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Horizontal Stabilizer (Left)"
+                token region = "catalina"
+            }
+        }
+
+        def Sphere "Cockpit" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0.29999995, 0.7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/f_15_sky/Cockpit/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Pilot's command center"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Cockpit"
+                token region = "catalina"
+            }
+        }
+
+        def RealityKitCustomComponent "RealityKitContent_RegionSpecificComponent"
+        {
+            uniform token info:id = "RealityKitContent.RegionSpecificComponent"
+            token region = "catalina"
+        }
     }
 
-    def "Cloud_Chunk" (
+    def Xform "f_15_ground" (
         active = true
-        prepend references = @Cloud_Chunk.usda@
     )
     {
+        reorder nameChildren = ["f_15_2", "TransparentMaterial", "f_15_3", "Group"]
+        quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0.0057411194, 0, 1.8382809)
+        float3 xformOp:translate = (0, 0.7, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "f_15_2" (
+            active = true
+            customData = {
+                float3 rotationEulerHint = (4.7123885, 0, 0)
+            }
+            references = @f_15_2.usdc@
+        )
+        {
+            quatf xformOp:orient = (0.7071067, -0.70710677, 0, 0)
+            float3 xformOp:scale = (0.09999999, 0.09999999, 0.09999999)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "_materials"
+            {
+                over "Main_V1_Mat"
+                {
+                    token outputs:surface.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat/Principled_BSDF.outputs:surface>
+
+                    over "Principled_BSDF"
+                    {
+                        color3f inputs:diffuseColor.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat/Image_Texture_001.outputs:rgb>
+                        color3f inputs:emissiveColor.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat/Image_Texture.outputs:rgb>
+                        float inputs:opacity.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat/Image_Texture_002.outputs:a>
+                    }
+
+                    over "Image_Texture_001"
+                    {
+                        float2 inputs:st.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
+                    }
+
+                    over "Image_Texture_002"
+                    {
+                        float2 inputs:st.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
+                    }
+
+                    over "Image_Texture"
+                    {
+                        float2 inputs:st.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat/uvmap.outputs:result>
+                    }
+                }
+
+                over "Main_V1_Mat_1"
+                {
+                    token outputs:surface.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat_1/Principled_BSDF.outputs:surface>
+
+                    over "Principled_BSDF"
+                    {
+                        color3f inputs:diffuseColor.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat_1/Image_Texture_001.outputs:rgb>
+                        color3f inputs:emissiveColor.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat_1/Image_Texture.outputs:rgb>
+                        float inputs:opacity.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat_1/Image_Texture_002.outputs:a>
+                    }
+
+                    over "Image_Texture_001"
+                    {
+                        float2 inputs:st.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
+                    }
+
+                    over "Image_Texture_002"
+                    {
+                        float2 inputs:st.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
+                    }
+
+                    over "Image_Texture"
+                    {
+                        float2 inputs:st.connect = </Root/f_15_ground/f_15_2/_materials/Main_V1_Mat_1/uvmap.outputs:result>
+                    }
+                }
+            }
+        }
+
+        def Material "TransparentMaterial"
+        {
+            token outputs:mtlx:surface.connect = </Root/f_15_ground/TransparentMaterial/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/f_15_sky/TransparentMaterial/UsdPreviewSurface.outputs:surface>
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:mtlx:surface"]
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 109.5)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 5
+
+            def Shader "UsdPreviewSurface" (
+                active = false
+            )
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                token outputs:surface
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:diffuseColor = (1, 1, 1) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:emissiveColor = (1, 1, 1) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:ior = 0
+                float inputs:occlusion = 0
+                float inputs:opacity = 0
+                float inputs:roughness = 0
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-255, 105)
+                float2 ui:nodegraph:node:size = (148.5, 199)
+                int ui:nodegraph:node:stackingOrder = 6
+            }
+        }
+
+        def Sphere "VerStable_R" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.2, 0.29999995, -0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/VerStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Maintains directional stability of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Vertical Stabilizer (Right)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "VerStable_L" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.2, 0.29999995, -0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/VerStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Maintains directional stability of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Vertical Stabilizer (Left)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "RightWingSpars" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3, 0.25, -0.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/RightWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Structural component carrying the majority of the wing's load"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Wing Spars (Right)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "RightFlips" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3, 0.25, -0.4)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/RightFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Increases lift during takeoff and landing"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Flips (Right)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "RightEngine" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.09, 0.25, -0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/RightEngine/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Provides thrust for propulsion"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Engine (Right)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "LeftWingSpars" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.3, 0.25, -0.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/LeftWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Structural component carrying the majority of the wing's load"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Wing Spars (Left)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "LeftFlips" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.3, 0.25, -0.4)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/LeftFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Increases lift during takeoff and landing"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Flips (Left)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "LeftEngine" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.09, 0.25, -0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/LeftEngine/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Provides thrust for propulsion"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Engine (Left)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "HorStable_R" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3, 0.25, -0.8)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/HorStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Stabilizes the pitch of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Horizontal Stabilizer (Right)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "HorStable_L" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.3, 0.25, -0.8)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/HorStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Stabilizes the pitch of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Horizontal Stabilizer (Left)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "Cockpit" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0.29999995, 0.7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/f_15_ground/Cockpit/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Pilot's command center"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Cockpit"
+                token region = "yosemite"
+            }
+        }
+
+        def RealityKitCustomComponent "RealityKitContent_RegionSpecificComponent"
+        {
+            uniform token info:id = "RealityKitContent.RegionSpecificComponent"
+        }
     }
 }
 
