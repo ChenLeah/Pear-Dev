@@ -1,0 +1,33 @@
+{
+  "E1D42338-DCD0-472B-AB9F-A7FC2854182F" : {
+    "objectMetadataList" : [
+      [
+        "E1D42338-DCD0-472B-AB9F-A7FC2854182F",
+        "Root",
+        "f_15_ground"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "E1D42338-DCD0-472B-AB9F-A7FC2854182F",
+        "Root",
+        "f_15_ground",
+        "Cockpit"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "E1D42338-DCD0-472B-AB9F-A7FC2854182F",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  }
+}

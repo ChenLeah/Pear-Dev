@@ -1,0 +1,16 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Xcode build and personal settings
+build/
+*.xcuserdatad/
+*.xcuserdata/
+*.swp
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore Swift Package Manager dependencies
+.build/
+.swiftpm/
