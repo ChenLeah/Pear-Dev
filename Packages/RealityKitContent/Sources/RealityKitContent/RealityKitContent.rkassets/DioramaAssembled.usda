@@ -9,7 +9,7 @@ reorder rootPrims = ["Root", "f_15"]
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Yosemite", "Two_Harbors", "Parsons_Landing", "Ribbon_Beach", "Cathedral_Rocks", "El_Capitan", "Merced_River", "Catalina", "Diorama_Base", "SmoothConcrete", "Birds", "Clouds", "OceanAudioEmitter", "ForestAudioEmitter", "Ocean_Sounds_wav", "Forest_Sounds_wav", "FlatTerrain", "Materials", "Cloud_Chunk", "f_15_ground", "f_15_sky", "TrailPath_Export"]
+    reorder nameChildren = ["Yosemite", "Two_Harbors", "Parsons_Landing", "Ribbon_Beach", "Cathedral_Rocks", "El_Capitan", "Merced_River", "Catalina", "Diorama_Base", "SmoothConcrete", "Birds", "Clouds", "OceanAudioEmitter", "ForestAudioEmitter", "Ocean_Sounds_wav", "Forest_Sounds_wav", "FlatTerrain", "Materials", "Cloud_Chunk", "f_15_ground", "Cockpit", "HorStable_L", "HorStable_R", "LeftEngine", "LeftFlips", "LeftWingSpars", "RightEngine", "RightFlips", "RightWingSpars", "VerStable_L", "VerStable_R", "f_15_sky", "TrailPath_Export"]
     float3 xformOp:translate = (0, 0, 0)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -2444,7 +2444,7 @@ def Xform "Root"
         active = true
     )
     {
-        reorder nameChildren = ["f_15_2", "TransparentMaterial", "f_15_3", "Group"]
+        reorder nameChildren = ["Cockpit", "HorStable_L", "HorStable_R", "LeftEngine", "LeftFlips", "LeftWingSpars", "RightEngine", "RightFlips", "RightWingSpars", "VerStable_L", "VerStable_R", "f_15_2", "TransparentMaterial", "RealityKitContent_RegionSpecificComponent"]
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
         float3 xformOp:translate = (0, 0.7, 0)
@@ -2560,23 +2560,30 @@ def Xform "Root"
             }
         }
 
-        def Sphere "VerStable_R" (
+        def RealityKitCustomComponent "RealityKitContent_RegionSpecificComponent"
+        {
+            uniform token info:id = "RealityKitContent.RegionSpecificComponent"
+        }
+
+        def Sphere "Cockpit" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
             double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.2, 0.29999995, -0.9)
+            float3 xformOp:translate = (0, 0.3, 0.7)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
             def Material "DefaultMaterial"
             {
-                token outputs:surface.connect = </Root/f_15_ground/VerStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/f_15_ground/Cockpit/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
                 def Shader "DefaultSurfaceShader"
                 {
@@ -2589,30 +2596,31 @@ def Xform "Root"
 
             def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
             {
-                string description = "Maintains directional stability of the plane"
+                string description = "Scenario Handling Assessment: What would you do in the case of a reported bird strike?"
                 uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Vertical Stabilizer (Right)"
+                string mainImageName = "cockpit"
+                string name = "Cockpit"
                 token region = "yosemite"
             }
         }
 
-        def Sphere "VerStable_L" (
+        def Sphere "HorStable_L" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
             double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.2, 0.29999995, -0.9)
+            float3 xformOp:translate = (0.3, 0.3, -0.8)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
             def Material "DefaultMaterial"
             {
-                token outputs:surface.connect = </Root/f_15_ground/VerStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                token outputs:surface.connect = </Root/f_15_ground/HorStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
                 def Shader "DefaultSurfaceShader"
                 {
@@ -2625,31 +2633,30 @@ def Xform "Root"
 
             def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
             {
-                string description = "Maintains directional stability of the plane"
+                string description = "Stabilizes the pitch of the plane"
                 uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Vertical Stabilizer (Left)"
+                string name = "Horizontal Stabilizer (Left)"
                 token region = "yosemite"
             }
         }
 
-        def Sphere "RightWingSpars" (
+        def Sphere "HorStable_R" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
             double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.3, 0.25, -0.2)
+            float3 xformOp:translate = (-0.3, 0.3, -0.8)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
             def Material "DefaultMaterial"
             {
-                token outputs:surface.connect = </Root/f_15_ground/RightWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                token outputs:surface.connect = </Root/f_15_ground/HorStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
                 def Shader "DefaultSurfaceShader"
                 {
@@ -2662,155 +2669,9 @@ def Xform "Root"
 
             def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
             {
-                string description = "Structural component carrying the majority of the wing's load"
+                string description = "Stabilizes the pitch of the plane"
                 uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Wing Spars (Right)"
-                token region = "yosemite"
-            }
-        }
-
-        def Sphere "RightFlips" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.3, 0.25, -0.4)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15_ground/RightFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                string description = "Increases lift during takeoff and landing"
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Flips (Right)"
-                token region = "yosemite"
-            }
-        }
-
-        def Sphere "RightEngine" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.09, 0.25, -0.75)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15_ground/RightEngine/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                string description = "Provides thrust for propulsion"
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Engine (Right)"
-                token region = "yosemite"
-            }
-        }
-
-        def Sphere "LeftWingSpars" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.3, 0.25, -0.2)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15_ground/LeftWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                string description = "Structural component carrying the majority of the wing's load"
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Wing Spars (Left)"
-                token region = "yosemite"
-            }
-        }
-
-        def Sphere "LeftFlips" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double radius = 0
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.3, 0.25, -0.4)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:surface.connect = </Root/f_15_ground/LeftFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                def Shader "DefaultSurfaceShader"
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (1, 1, 1)
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-            }
-
-            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
-            {
-                string description = "Increases lift during takeoff and landing"
-                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Flips (Left)"
+                string name = "Horizontal Stabilizer (Right)"
                 token region = "yosemite"
             }
         }
@@ -2821,7 +2682,7 @@ def Xform "Root"
         )
         {
             reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
             double radius = 0
@@ -2852,23 +2713,23 @@ def Xform "Root"
             }
         }
 
-        def Sphere "HorStable_R" (
+        def Sphere "LeftFlips" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
             double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (-0.3, 0.25, -0.8)
+            float3 xformOp:translate = (0.3, 0.25, -0.4)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
             def Material "DefaultMaterial"
             {
-                token outputs:surface.connect = </Root/f_15_ground/HorStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                token outputs:surface.connect = </Root/f_15_ground/LeftFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
                 def Shader "DefaultSurfaceShader"
                 {
@@ -2881,30 +2742,30 @@ def Xform "Root"
 
             def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
             {
-                string description = "Stabilizes the pitch of the plane"
+                string description = "Increases lift during takeoff and landing"
                 uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Horizontal Stabilizer (Right)"
+                string name = "Flips (Left)"
                 token region = "yosemite"
             }
         }
 
-        def Sphere "HorStable_L" (
+        def Sphere "LeftWingSpars" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
             double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0.3, 0.25, -0.8)
+            float3 xformOp:translate = (0.3, 0.25, -0.2)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
             def Material "DefaultMaterial"
             {
-                token outputs:surface.connect = </Root/f_15_ground/HorStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                token outputs:surface.connect = </Root/f_15_ground/LeftWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
                 def Shader "DefaultSurfaceShader"
                 {
@@ -2917,32 +2778,31 @@ def Xform "Root"
 
             def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
             {
-                string description = "Stabilizes the pitch of the plane"
+                string description = "Structural component carrying the majority of the wing's load"
                 uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Horizontal Stabilizer (Left)"
+                string name = "Wing Spars (Left)"
                 token region = "yosemite"
             }
         }
 
-        def Sphere "Cockpit" (
+        def Sphere "RightEngine" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            rel material:binding = </Root/f_15_ground/TransparentMaterial> (
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
                 bindMaterialAs = "weakerThanDescendants"
             )
             double radius = 0
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0, 0.29999995, 0.7)
+            float3 xformOp:translate = (-0.09, 0.25, -0.75)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
             def Material "DefaultMaterial"
             {
-                token outputs:mtlx:surface
-                token outputs:realitykit:vertex
-                token outputs:surface.connect = </Root/f_15_ground/Cockpit/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                token outputs:surface.connect = </Root/f_15_ground/RightEngine/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
                 def Shader "DefaultSurfaceShader"
                 {
@@ -2955,16 +2815,157 @@ def Xform "Root"
 
             def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
             {
-                string description = "Pilot's command center"
+                string description = "Provides thrust for propulsion"
                 uniform token info:id = "RealityKitContent.PointOfInterestComponent"
-                string name = "Cockpit"
+                string name = "Engine (Right)"
                 token region = "yosemite"
             }
         }
 
-        def RealityKitCustomComponent "RealityKitContent_RegionSpecificComponent"
+        def Sphere "RightFlips" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
-            uniform token info:id = "RealityKitContent.RegionSpecificComponent"
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3, 0.25, -0.4)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/RightFlips/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Increases lift during takeoff and landing"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Flips (Right)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "RightWingSpars" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "RealityKitContent_PointOfInterestComponent"]
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3, 0.25, -0.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/RightWingSpars/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Structural component carrying the majority of the wing's load"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Wing Spars (Right)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "VerStable_L" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.2, 0.25, -0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/VerStable_L/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Maintains directional stability of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Vertical Stabilizer (Left)"
+                token region = "yosemite"
+            }
+        }
+
+        def Sphere "VerStable_R" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/f_15_sky/TransparentMaterial> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.2, 0.25, -0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/f_15_ground/VerStable_R/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
+            {
+                string description = "Maintains directional stability of the plane"
+                uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string name = "Vertical Stabilizer (Right)"
+                token region = "yosemite"
+            }
         }
     }
 }
