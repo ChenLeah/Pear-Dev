@@ -148,9 +148,13 @@ def Xform "Root"
 
     def RealityKitAudioFile "Ocean_Sounds_wav"
     {
-        asset file = @Ocean_Sounds.wav@
+        uniform token calibrationMode = "relative"
+        asset file = @engine.wav@
+        uniform token normalization = "dynamic"
         asset realitykit:file = @Ocean_Sounds.wav@
+        uniform float relativeCalibration = 0
         bool shouldLoop = 1
+        uniform bool shouldRandomizeStartTime = 1
     }
 
     def Xform "OceanAudioEmitter"
@@ -193,9 +197,13 @@ def Xform "Root"
 
     def RealityKitAudioFile "Forest_Sounds_wav"
     {
-        asset file = @Forest_Sounds.wav@
+        uniform token calibrationMode = "relative"
+        asset file = @wind.wav@
+        uniform token normalization = "dynamic"
         asset realitykit:file = @Forest_Sounds.wav@
+        uniform float relativeCalibration = 0.3595267
         bool shouldLoop = 1
+        uniform bool shouldRandomizeStartTime = 1
     }
 
     def "FlatTerrain" (
@@ -2404,8 +2412,9 @@ def Xform "Root"
 
             def RealityKitCustomComponent "RealityKitContent_PointOfInterestComponent"
             {
-                string description = "Pilot's command center"
+                string description = "Scenario Handling Assessment: What would you do in the case of a reported bird strike?"
                 uniform token info:id = "RealityKitContent.PointOfInterestComponent"
+                string mainImageName = "cockpit"
                 string name = "Cockpit"
                 token region = "catalina"
             }

@@ -1,0 +1,108 @@
+{
+  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
+  "openSceneRelativePaths" : [
+    "Bird_With_Audio.usda",
+    "f_15.usda",
+    "DioramaAssembled.usda"
+  ],
+  "recentIdentifiers" : {
+
+  },
+  "sceneCameraHistory" : {
+    "5297D9AC-B326-49EE-AE9B-4BB66765CE10" : [
+      {
+        "date" : 739778727.155307,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          -0,
+          0,
+          -0,
+          0.8660254,
+          -0.5,
+          0,
+          0,
+          0.5,
+          0.8660254,
+          0,
+          0,
+          0.22416249,
+          0.38826087,
+          1
+        ]
+      }
+    ],
+    "CE465234-EBD2-4677-A87A-E42E811976A7" : [
+      {
+        "date" : 739778727.202899,
+        "title" : "Untitled",
+        "transform" : [
+          0.99999994,
+          0,
+          -0,
+          0,
+          -0,
+          0.8849034,
+          -0.46577448,
+          0,
+          0,
+          0.46577448,
+          0.8849034,
+          0,
+          0,
+          3.9407547,
+          5.686645,
+          1
+        ]
+      }
+    ],
+    "E1D42338-DCD0-472B-AB9F-A7FC2854182F" : [
+      {
+        "date" : 739778750.271866,
+        "title" : "Untitled",
+        "transform" : [
+          0.99999994,
+          0,
+          -0,
+          0,
+          -0,
+          0.8604668,
+          -0.50950646,
+          0,
+          0,
+          0.50950646,
+          0.8604668,
+          0,
+          0,
+          6.80013,
+          9.673362,
+          1
+        ]
+      },
+      {
+        "date" : 739778747.940452,
+        "title" : "Untitled",
+        "transform" : [
+          0.99999994,
+          0,
+          -0,
+          0,
+          -0,
+          0.8660254,
+          -0.49999994,
+          0,
+          0,
+          0.49999994,
+          0.8660254,
+          0,
+          0,
+          0.1508734,
+          0.2613204,
+          1
+        ]
+      }
+    ]
+  },
+  "selectedSceneRelativePath" : "DioramaAssembled.usda"
+}

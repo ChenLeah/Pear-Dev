@@ -26,7 +26,7 @@ struct ContentView: View {
             Spacer()
             Grid(alignment: .leading, verticalSpacing: 30) {
                 Toggle(isOn: $viewModel.showImmersiveContent) {
-                    Text("Show Diorama")
+                    Text("Turn on to show aircraft model")
                 }
                 .onChange(of: viewModel.showImmersiveContent) {
                     Task {
@@ -40,7 +40,7 @@ struct ContentView: View {
                 }
                 
                 GridRow {
-                    Text("Morph")
+                    Text("On-Ground / In-Flight")
                     Slider(value: $viewModel.sliderValue, in: (0.0)...(1.0))
                         .onChange(of: viewModel.sliderValue) { _, _ in
                             update()
