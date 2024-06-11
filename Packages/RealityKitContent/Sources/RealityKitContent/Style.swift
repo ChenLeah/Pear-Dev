@@ -10,7 +10,7 @@ import SwiftUI
 public struct GreenBackground: ViewModifier {
     public func body(content: Content) -> some View {
         content
-            .background(.green.opacity(0.2))
+            .background(Color(red: 0, green: 204/255, blue: 204/255).opacity(0.2))
             .glassBackgroundEffect(in: .rect(cornerRadius: 25))
     }
 }

@@ -61,8 +61,7 @@ public struct LearnMoreView: View {
                             .font(descriptionFont)
                         
                         if !imageNames.isEmpty {
-                            Spacer()
-                                .frame(height: 10)
+                            //Spacer().frame(height: 10)
                             
                             ImagesView(imageNames: imageNames)
                         }
@@ -85,9 +84,6 @@ public struct LearnMoreView: View {
                         }
                         if let history = recordHistory, history.transcript?.isEmpty == false {
                             HistoryView(history: history)
-                        }
-                        else{
-                            
                         }
                     }
                 }
@@ -142,18 +138,9 @@ struct ImagesView: View {
 struct HistoryView: View {
     let history: History
 
-
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Divider()
-                    .padding(.bottom)
-                if let position = history.position{
-                    Text("Position")
-                        .font(.headline)
-                    Text(position)
-                }
-                
                 if let transcript = history.transcript {
                     Text("Transcript")
                         .font(.headline)
@@ -162,22 +149,8 @@ struct HistoryView: View {
                 }
             }
         }
-        .padding()
     }
 }
-
-
-
-/*struct HistoryView_Previews: PreviewProvider {
-    static var history: History {
-        History(position: "Left Engine",
-                transcript: "Darla, would you like to start today? Sure, yesterday I reviewed Luis' PR and met with the design team to finalize the UI...")
-    }
-    
-    static var previews: some View {
-        HistoryView(history: history)
-    }
-}*/
 
 #Preview {
     RealityView { content, attachments in

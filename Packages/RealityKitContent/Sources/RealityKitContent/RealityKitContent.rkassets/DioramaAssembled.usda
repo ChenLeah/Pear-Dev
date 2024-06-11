@@ -257,6 +257,12 @@ def Xform "Root"
             float3 xformOp:translate = (1.010361, 1.0464834, -0.09275916)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
         }
+
+        def RealityKitCustomComponent "RealityKitContent_RegionSpecificComponent"
+        {
+            uniform token info:id = "RealityKitContent.RegionSpecificComponent"
+            token region = "catalina"
+        }
     }
 
     def "Diorama_Base" (
@@ -402,6 +408,12 @@ def Xform "Root"
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (-0.060794532, 1.1411786, -0.13903725)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def RealityKitCustomComponent "RealityKitContent_RegionSpecificComponent"
+        {
+            uniform token info:id = "RealityKitContent.RegionSpecificComponent"
+            token region = "catalina"
         }
     }
 
@@ -1335,15 +1347,15 @@ def Xform "Root"
             def Shader "YosemiteColors"
             {
                 uniform token info:id = "ND_image_color3"
-                color3f inputs:default = (0.58885735, 0.58885735, 0.58885735) (
+                color3f inputs:default = (0.9043955, 0.9043955, 0.9043955) (
                     colorSpace = "srgb_displayp3"
                 )
-                asset inputs:file = @TrailPath_Export/Concrete_1.jpg@
+                asset inputs:file = None
                 string inputs:filtertype
                 color3f outputs:out
                 float2 ui:nodegraph:node:pos = (-1528.858, -883.2184)
                 float2 ui:nodegraph:node:size = (149.5, 199)
-                int ui:nodegraph:node:stackingOrder = 8276
+                int ui:nodegraph:node:stackingOrder = 8290
                 string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:file", "inputs:vaddressmode"]
             }
 
@@ -1371,8 +1383,8 @@ def Xform "Root"
                 float3 outputs:out
                 float2 ui:nodegraph:node:pos = (-1487.7197, -240.35104)
                 float2 ui:nodegraph:node:size = (161, 199)
-                int ui:nodegraph:node:stackingOrder = 8274
-                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:filtertype", "inputs:file"]
+                int ui:nodegraph:node:stackingOrder = 8294
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:filtertype", "inputs:file", "inputs:default", "inputs:file", "inputs:texcoord", "inputs:file"]
             }
 
             def Shader "CatalinaNormals"
@@ -1403,7 +1415,7 @@ def Xform "Root"
                 float outputs:out
                 float2 ui:nodegraph:node:pos = (-1505.3527, 477.21112)
                 float2 ui:nodegraph:node:size = (157, 199)
-                int ui:nodegraph:node:stackingOrder = 8265
+                int ui:nodegraph:node:stackingOrder = 8296
                 string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:file", "inputs:texcoord"]
             }
 
@@ -1471,14 +1483,14 @@ def Xform "Root"
             def Shader "YosemiteRoughness"
             {
                 uniform token info:id = "ND_image_float"
-                float inputs:default = 1
+                float inputs:default = 0
                 asset inputs:file = @TrailPath_Export/Concrete_1.jpg@
                 string inputs:filtertype
                 float outputs:out
                 float2 ui:nodegraph:node:pos = (-1483.7522, -545.18494)
                 float2 ui:nodegraph:node:size = (177.5, 199)
-                int ui:nodegraph:node:stackingOrder = 8273
-                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:texcoord", "inputs:texcoord"]
+                int ui:nodegraph:node:stackingOrder = 8293
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:texcoord", "inputs:texcoord", "inputs:vaddressmode", "inputs:texcoord", "inputs:file", "inputs:texcoord", "inputs:texcoord"]
             }
 
             def Shader "Mix_4"
@@ -1513,7 +1525,8 @@ def Xform "Root"
                 float outputs:out
                 float2 ui:nodegraph:node:pos = (-1463.9677, 71.47189)
                 float2 ui:nodegraph:node:size = (222.5, 199)
-                int ui:nodegraph:node:stackingOrder = 8275
+                int ui:nodegraph:node:stackingOrder = 8295
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:filtertype"]
             }
 
             def Shader "MixNormals"
@@ -1545,7 +1558,7 @@ def Xform "Root"
                     customData = {
                         dictionary realitykit = {
                             float2 positionInSubgraph = (-177.60938, 42.4375)
-                            float2 sizeInSubgraph = (113, 43)
+                            float2 sizeInSubgraph = (139, 53)
                             int stackingOrderInSubgraph = 7511
                         }
                     }
@@ -1557,7 +1570,7 @@ def Xform "Root"
                 int ui:nodegraph:node:stackingOrder = 8250
                 string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:Multiply_1_out", "outputs:Multiply_1_out"]
                 float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (712.515, 102.66016)
-                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (165.99559, 71)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (165.5, 81)
                 int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 5748
 
                 def Shader "DotProduct"
@@ -1567,7 +1580,7 @@ def Xform "Root"
                     float3 inputs:in2 = (0, 1, 0)
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (15.640625, 42.4375)
-                    float2 ui:nodegraph:node:size = (153.5, 43)
+                    float2 ui:nodegraph:node:size = (153.5, 53)
                     int ui:nodegraph:node:stackingOrder = 7471
                 }
 
@@ -1581,7 +1594,7 @@ def Xform "Root"
                     float inputs:value2 = 0.995
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (531.1406, 60.61328)
-                    float2 ui:nodegraph:node:size = (109, 153)
+                    float2 ui:nodegraph:node:size = (109, 163)
                     int ui:nodegraph:node:stackingOrder = 7616
                 }
 
@@ -1602,7 +1615,7 @@ def Xform "Root"
                     float inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/AngleCompensation/DotProduct.outputs:out>
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (277.1797, 31.824219)
-                    float2 ui:nodegraph:node:size = (121.5, 43)
+                    float2 ui:nodegraph:node:size = (121.5, 53)
                     int ui:nodegraph:node:stackingOrder = 7580
                 }
 
@@ -1643,7 +1656,7 @@ def Xform "Root"
                     customData = {
                         dictionary realitykit = {
                             float2 positionInSubgraph = (59.930267, 473.81567)
-                            float2 sizeInSubgraph = (134, 43)
+                            float2 sizeInSubgraph = (134, 53)
                             int stackingOrderInSubgraph = 5767
                         }
                     }
@@ -1654,7 +1667,7 @@ def Xform "Root"
                     customData = {
                         dictionary realitykit = {
                             float2 positionInSubgraph = (67, 560.75)
-                            float2 sizeInSubgraph = (127.5, 43)
+                            float2 sizeInSubgraph = (133, 53)
                             int stackingOrderInSubgraph = 4313
                         }
                     }
@@ -1664,7 +1677,7 @@ def Xform "Root"
                     customData = {
                         dictionary realitykit = {
                             float2 positionInSubgraph = (50.71946, 377.60477)
-                            float2 sizeInSubgraph = (171, 43)
+                            float2 sizeInSubgraph = (171, 53)
                             int stackingOrderInSubgraph = 5773
                         }
                     }
@@ -1674,7 +1687,7 @@ def Xform "Root"
                     customData = {
                         dictionary realitykit = {
                             float2 positionInSubgraph = (68.50054, 299.94638)
-                            float2 sizeInSubgraph = (118.5, 43)
+                            float2 sizeInSubgraph = (118.5, 53)
                             int stackingOrderInSubgraph = 4363
                         }
                     }
@@ -1682,7 +1695,7 @@ def Xform "Root"
                 float2 ui:nodegraph:node:pos = (-526.79315, -754.96735)
                 float2 ui:nodegraph:node:size = (149.5, 163)
                 int ui:nodegraph:node:stackingOrder = 8220
-                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (224, 71)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (205, 81)
             }
 
             def Shader "LineFuzzWidth"
@@ -1772,7 +1785,7 @@ def Xform "Root"
                 float2 ui:nodegraph:node:size = (171.5, 81)
                 int ui:nodegraph:node:stackingOrder = 8249
                 float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1309.75, 225)
-                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (142, 71)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (142, 81)
 
                 def Shader "Multiply_2"
                 {
@@ -1795,7 +1808,7 @@ def Xform "Root"
                     float inputs:value2 = 3
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (1101.25, 225)
-                    float2 ui:nodegraph:node:size = (113.5, 153)
+                    float2 ui:nodegraph:node:size = (113.5, 163)
                     int ui:nodegraph:node:stackingOrder = 8319
                 }
 
@@ -1805,7 +1818,7 @@ def Xform "Root"
                     float inputs:in.connect = </Root/Materials/DynamicTerrainMaterialPlane/TestProgressDriver/Multiply_2.outputs:out>
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (482.5, 85.5)
-                    float2 ui:nodegraph:node:size = (116, 30)
+                    float2 ui:nodegraph:node:size = (116, 40)
                     int ui:nodegraph:node:stackingOrder = 8319
                 }
 
@@ -1828,7 +1841,7 @@ def Xform "Root"
                     float inputs:outhigh
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (686, 85.5)
-                    float2 ui:nodegraph:node:size = (105.5, 171)
+                    float2 ui:nodegraph:node:size = (105.5, 181)
                     int ui:nodegraph:node:stackingOrder = 8319
                 }
 
@@ -1841,7 +1854,7 @@ def Xform "Root"
                     float inputs:value2 = 4
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (908, 88.5)
-                    float2 ui:nodegraph:node:size = (117, 153)
+                    float2 ui:nodegraph:node:size = (117, 163)
                     int ui:nodegraph:node:stackingOrder = 8319
                 }
 
@@ -1852,7 +1865,7 @@ def Xform "Root"
                     float inputs:in2 = 6
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (482.5, 196.5)
-                    float2 ui:nodegraph:node:size = (63, 36)
+                    float2 ui:nodegraph:node:size = (63, 38.5)
                     int ui:nodegraph:node:stackingOrder = 8319
                 }
 
@@ -1865,7 +1878,7 @@ def Xform "Root"
                     float inputs:value2 = 1
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (908, 301.5)
-                    float2 ui:nodegraph:node:size = (109, 153)
+                    float2 ui:nodegraph:node:size = (109, 163)
                     int ui:nodegraph:node:stackingOrder = 8319
                 }
 
@@ -1874,7 +1887,7 @@ def Xform "Root"
                     uniform token info:id = "ND_time_float"
                     float outputs:out
                     float2 ui:nodegraph:node:pos = (62.25, 136.5)
-                    float2 ui:nodegraph:node:size = (124.5, 43)
+                    float2 ui:nodegraph:node:size = (122.5, 53)
                     int ui:nodegraph:node:stackingOrder = 8319
                 }
             }
