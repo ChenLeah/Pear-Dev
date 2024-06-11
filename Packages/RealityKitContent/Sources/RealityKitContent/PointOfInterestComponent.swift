@@ -2,7 +2,7 @@
 See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-A component that marks an entity as a point of interest on the diorama map.
+A component that marks an entity as a point of interest on the map.
 */
 import RealityKit
 import SwiftUI

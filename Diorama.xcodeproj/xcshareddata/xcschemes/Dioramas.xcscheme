@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "16684A7C29D7582100E55562"
-               BuildableName = "Diorama.app"
-               BlueprintName = "Diorama"
+               BuildableName = "TripleA.app"
+               BlueprintName = "TripleA"
                ReferencedContainer = "container:Diorama.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "16684A7C29D7582100E55562"
-            BuildableName = "Diorama.app"
-            BlueprintName = "Diorama"
+            BuildableName = "TripleA.app"
+            BlueprintName = "TripleA"
             ReferencedContainer = "container:Diorama.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "16684A7C29D7582100E55562"
-            BuildableName = "Diorama.app"
-            BlueprintName = "Diorama"
+            BuildableName = "TripleA.app"
+            BlueprintName = "TripleA"
             ReferencedContainer = "container:Diorama.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
