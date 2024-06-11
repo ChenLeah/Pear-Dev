@@ -15,4 +15,4 @@ The Pear'dev Aircraft Assessment App for Apple Vision Pro leverages mixed realit
 * Cockpit Image: https://upload.wikimedia.org/wikipedia/commons/5/54/F-15_Eagle_Cockpit.jpg
 * Bird Strike Image: https://upload.wikimedia.org/wikipedia/commons/d/de/F16_after_bird_strike.jpg
 * App Icon Image: AI-generated from OpenAI ChatGPT
-* Audio (Wind at base & Engine in flight): AI-generated from https://huggingface.co/spaces/haoheliu/audioldm2-text2audio-text2music ß
+* Audio (Wind at base & Engine in flight): AI-generated from https://huggingface.co/spaces/haoheliu/audioldm2-text2audio-text2music
