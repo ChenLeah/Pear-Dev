@@ -14,7 +14,7 @@
         "E1D42338-DCD0-472B-AB9F-A7FC2854182F",
         "Root",
         "f_15_ground",
-        "f_15_2"
+        "Cockpit"
       ],
       {
         "isExpanded" : true,
@@ -23,15 +23,6 @@
       [
         "E1D42338-DCD0-472B-AB9F-A7FC2854182F",
         "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "E1D42338-DCD0-472B-AB9F-A7FC2854182F",
-        "Root",
-        "f_15_sky"
       ],
       {
         "isExpanded" : true,

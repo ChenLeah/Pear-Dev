@@ -61,7 +61,7 @@ public struct LearnMoreView: View {
                             .font(descriptionFont)
                         
                         if !imageNames.isEmpty {
-                            //Spacer().frame(height: 10)
+                            Spacer().frame(height: 10)
                             
                             ImagesView(imageNames: imageNames)
                         }
@@ -143,12 +143,12 @@ struct HistoryView: View {
             VStack(alignment: .leading) {
                 if let transcript = history.transcript {
                     Text("Transcript")
-                        .font(.headline)
-                        .padding(.top)
-                    Text(transcript)
+                        .font(.system(size: 36, weight: .regular))
+                        .padding(.vertical)
+                    Text(transcript).font(.system(size: 25 ,weight: .regular))
                 }
             }
-        }
+        }.frame(height: 200)
     }
 }
 

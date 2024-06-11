@@ -2430,6 +2430,7 @@ def Xform "Root"
                 string mainImageName = "cockpit"
                 string name = "Cockpit"
                 token region = "catalina"
+                string secondImageName = "bird_strike"
             }
         }
 
@@ -2601,6 +2602,7 @@ def Xform "Root"
                 string mainImageName = "cockpit"
                 string name = "Cockpit"
                 token region = "yosemite"
+                string secondImageName = "bird_strike"
             }
         }
 
